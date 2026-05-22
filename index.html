@@ -1,0 +1,1500 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VSD Exam Mastery — IIT-J</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0f14;
+  --surface: #14181f;
+  --surface2: #1a1f2a;
+  --border: #252b38;
+  --text: #e2e4e9;
+  --text2: #9399a5;
+  --accent: #5b8af5;
+  --accent2: #a78bfa;
+  --green: #34d399;
+  --red: #f87171;
+  --orange: #fbbf24;
+  --pink: #f472b6;
+  --cyan: #22d3ee;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+.hero {
+  padding: 60px 24px 40px;
+  text-align: center;
+  background: linear-gradient(180deg, #151a25 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--text);
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.hero .sub {
+  color: var(--text2);
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.hero .badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(12,15,20,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0 16px;
+  scrollbar-width: none;
+}
+.nav-bar::-webkit-scrollbar { display: none; }
+
+.nav-bar button {
+  background: none;
+  border: none;
+  color: var(--text2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 14px 16px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.nav-bar button:hover { color: var(--text); }
+.nav-bar button.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+
+.topic-section { display: none; }
+.topic-section.active { display: block; }
+
+h2.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.section-sub {
+  color: var(--text2);
+  font-size: 0.92rem;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.concept-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.concept-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.concept-card h3 .tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.tag-must { background: rgba(248,113,113,0.15); color: var(--red); }
+.tag-important { background: rgba(251,191,36,0.15); color: var(--orange); }
+.tag-code { background: rgba(91,138,245,0.15); color: var(--accent); }
+.tag-tip { background: rgba(52,211,153,0.15); color: var(--green); }
+
+.concept-card p, .concept-card ul {
+  color: var(--text2);
+  font-size: 0.92rem;
+  margin-bottom: 10px;
+}
+.concept-card ul { padding-left: 20px; }
+.concept-card li { margin-bottom: 6px; }
+
+.concept-card strong { color: var(--text); }
+
+.key-point {
+  background: var(--surface2);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  margin: 14px 0;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+
+.key-point.warn {
+  border-left-color: var(--orange);
+}
+.key-point.exam {
+  border-left-color: var(--red);
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--surface2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  color: var(--cyan);
+}
+
+pre {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  margin: 14px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.quiz-section {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.quiz-section h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: var(--accent2);
+}
+
+.quiz-q {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.quiz-q .q-text {
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.quiz-q .q-type {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.quiz-q .options { display: flex; flex-direction: column; gap: 8px; }
+
+.opt-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+.opt-btn:hover { border-color: var(--accent); color: var(--text); }
+.opt-btn.correct {
+  background: rgba(52,211,153,0.1);
+  border-color: var(--green);
+  color: var(--green);
+}
+.opt-btn.wrong {
+  background: rgba(248,113,113,0.1);
+  border-color: var(--red);
+  color: var(--red);
+}
+.opt-btn.disabled { pointer-events: none; }
+
+.explanation {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: var(--surface2);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--text2);
+  border-left: 3px solid var(--green);
+}
+.explanation.show { display: block; }
+.explanation strong { color: var(--green); }
+
+.score-bar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.score-bar .label { font-size: 0.85rem; color: var(--text2); }
+.score-bar .score { font-size: 1.4rem; font-weight: 700; color: var(--green); }
+
+.subjective-q {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.subjective-q .q-text {
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 8px;
+}
+
+.subjective-q .marks {
+  font-size: 0.72rem;
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.toggle-ans {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.toggle-ans:hover { opacity: 0.85; }
+
+.model-ans {
+  display: none;
+  margin-top: 12px;
+  padding: 14px;
+  background: var(--surface2);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--text2);
+  line-height: 1.7;
+  border-left: 3px solid var(--accent2);
+}
+.model-ans.show { display: block; }
+.model-ans strong { color: var(--text); }
+
+.cheatsheet {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.cheat-item {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.cheat-item .label { font-size: 0.75rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.cheat-item .value { font-size: 1rem; font-weight: 700; color: var(--text); }
+.cheat-item .detail { font-size: 0.8rem; color: var(--text2); margin-top: 4px; }
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 0.85rem;
+}
+.comparison-table th {
+  background: var(--surface2);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--accent);
+  border-bottom: 2px solid var(--border);
+}
+.comparison-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text2);
+}
+.comparison-table tr:hover td { background: var(--surface); }
+
+@media (max-width: 600px) {
+  .container { padding: 20px 14px 60px; }
+  .concept-card { padding: 18px; }
+  .cheatsheet { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">IIT Jodhpur — BSc AI & DS</div>
+  <h1>VSD Exam Mastery</h1>
+  <p class="sub">Visualization & Storytelling with Data — Weeks 1 to 13 · Deep Dive + Practice</p>
+</div>
+
+<div class="nav-bar" id="navBar">
+  <button class="active" onclick="showTopic('t1',this)">1 · Perception</button>
+  <button onclick="showTopic('t2',this)">2 · Design</button>
+  <button onclick="showTopic('t3',this)">3 · Charts</button>
+  <button onclick="showTopic('t4',this)">4 · Storytelling</button>
+  <button onclick="showTopic('t5',this)">5 · Matplotlib</button>
+  <button onclick="showTopic('t6',this)">6 · Plotly</button>
+  <button onclick="showTopic('t7',this)">7 · Excel</button>
+  <button onclick="showTopic('t8',this)">8 · AI Tools</button>
+  <button onclick="showTopic('t9',this)">9 · Domains</button>
+  <button onclick="showTopic('t10',this)">10 · Pitfalls</button>
+</div>
+
+<div class="container">
+
+<!-- ===================== TOPIC 1: VISUAL PERCEPTION ===================== -->
+<div class="topic-section active" id="t1">
+<h2 class="section-title">Visual Perception Basics</h2>
+<p class="section-sub">Weeks 1–3 · How the brain interprets visual data — the foundation of every design decision</p>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Gestalt Principles</h3>
+<p>The brain is a pattern-matching machine. It groups visual elements automatically using these rules:</p>
+<table class="comparison-table">
+<tr><th>Principle</th><th>What It Says</th><th>Exam-Ready Example</th></tr>
+<tr><td><strong>Proximity</strong></td><td>Close objects = perceived as a group</td><td>Sales & Profit KPI cards placed next to each other on a dashboard</td></tr>
+<tr><td><strong>Similarity</strong></td><td>Same color/shape/size = perceived as related</td><td>All "Urgent Alerts" shown as red circles vs blue for normal</td></tr>
+<tr><td><strong>Closure</strong></td><td>Brain fills gaps to complete shapes</td><td>A rangoli with a small wind-gap still looks like a full flower</td></tr>
+<tr><td><strong>Continuity</strong></td><td>Eye follows smooth paths/lines naturally</td><td>A trend line in a line chart — eye follows the trajectory</td></tr>
+<tr><td><strong>Figure & Ground</strong></td><td>Distinguishing foreground from background</td><td>Optical illusions (vase vs two faces)</td></tr>
+</table>
+<div class="key-point exam">🎯 <strong>IIT Trap:</strong> They may ask "which principle explains elements moving in the same direction?" — Answer is <strong>Continuity</strong>, NOT Proximity. Proximity is about physical closeness, Continuity is about smooth flow.</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Pre-attentive Attributes</h3>
+<p>Features the brain processes in <strong>under 200 milliseconds</strong> — before conscious thought kicks in.</p>
+<p>The four key attributes: <strong>Color</strong>, <strong>Size</strong>, <strong>Orientation</strong>, <strong>Shape</strong></p>
+<div class="key-point">💡 Real-world: Traffic lights use color (Red = Stop, Green = Go) as a pre-attentive attribute. In Excel, color negative numbers red and positive green — instant comprehension.</div>
+<div class="key-point exam">🎯 <strong>MCQ Trap:</strong> "Reading a paragraph" and "calculating sums" are NOT pre-attentive — they require conscious effort. Only <strong>Color intensity/Hue</strong> is pre-attentive.</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-important">Important</span> Cognitive Load</h3>
+<p><strong>Definition:</strong> The amount of mental effort required to interpret a visual.</p>
+<p>Goal of every visualization: <strong>minimize cognitive load</strong>. Every principle (Gestalt, Data-Ink Ratio, Progressive Disclosure) ultimately serves this goal.</p>
+<div class="key-point">💡 <strong>Connecting concepts:</strong> Similarity reduces cognitive load because the brain groups by color automatically — no need to read each label. This is a common 3-mark question.</div>
+</div>
+
+<div class="quiz-section">
+<h3>Practice MCQs — Perception</h3>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ · Tricky</div>
+<div class="q-text">Q1. A designer places "Revenue" and "Profit" cards adjacent on a dashboard. Which Gestalt principle is being used?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Similarity</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Proximity</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Continuity</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Closure</button>
+</div>
+<div class="explanation"><strong>Correct: B) Proximity.</strong> They're placed close together because they're related. Similarity would mean making them the same color/shape.</div>
+</div>
+
+<div class="quiz-q" data-answer="2">
+<div class="q-type">MCQ · Application</div>
+<div class="q-text">Q2. A user spots a red dot among 50 blue dots instantly. This is an example of:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Cognitive overload</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Gestalt Closure</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Pre-attentive processing (Color)</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Data-Ink Ratio</button>
+</div>
+<div class="explanation"><strong>Correct: C) Pre-attentive processing.</strong> Color differences are detected in &lt;200ms without conscious effort — this is the definition of a pre-attentive attribute.</div>
+</div>
+
+<div class="quiz-q" data-answer="0">
+<div class="q-type">MCQ · Conceptual</div>
+<div class="q-text">Q3. Even though a logo has an incomplete circle, we perceive it as a full circle. This is:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Closure</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Proximity</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Continuity</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Figure & Ground</button>
+</div>
+<div class="explanation"><strong>Correct: A) Closure.</strong> The brain fills in missing gaps to perceive complete shapes — this is the textbook definition of Closure.</div>
+</div>
+
+</div>
+
+<div class="quiz-section">
+<h3>Subjective Practice</h3>
+<div class="subjective-q">
+<div class="marks">3 Marks · Short Answer</div>
+<div class="q-text">Define Cognitive Load. Explain how the Gestalt Principle of Similarity reduces cognitive load in a 5-region sales dashboard.</div>
+<button class="toggle-ans" onclick="toggleModel(this)">Show Model Answer</button>
+<div class="model-ans">
+<strong>Cognitive Load</strong> is the amount of mental effort/brain power required to interpret a visual. (1.5 marks)<br><br>
+The principle of <strong>Similarity</strong> (e.g., assigning a distinct, consistent color to each region — Red for North, Blue for South, Green for East, etc.) reduces cognitive load because the brain <strong>automatically groups data by color</strong> without requiring the user to read every individual text label. The manager can instantly scan for "all red elements" to see North's performance, rather than reading labels one by one. This shifts the processing from slow, conscious reading to fast, pre-attentive pattern matching. (1.5 marks)
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===================== TOPIC 2: DESIGN PRINCIPLES ===================== -->
+<div class="topic-section" id="t2">
+<h2 class="section-title">Key Visual Design Principles</h2>
+<p class="section-sub">Weeks 1–3 · Clarity, Accuracy, Efficiency — The three commandments</p>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> The Three Pillars</h3>
+<table class="comparison-table">
+<tr><th>Principle</th><th>Meaning</th><th>Violation Example</th></tr>
+<tr><td><strong>Clarity</strong></td><td>Easy to read, clear labels, no clutter</td><td>Missing axis labels, tiny fonts</td></tr>
+<tr><td><strong>Accuracy</strong></td><td>Truthful representation, no distortion</td><td>Truncated Y-axis, 3D pie charts</td></tr>
+<tr><td><strong>Efficiency</strong></td><td>High Data-Ink Ratio, fast to process</td><td>Heavy gridlines, decorative backgrounds</td></tr>
+</table>
+<p>Also remember: <strong>Consistency</strong> — uniform colors and fonts across all slides/charts.</p>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Data-Ink Ratio (Edward Tufte)</h3>
+<p><strong>Definition:</strong> The proportion of ink used for meaningful data vs. total ink used on the chart.</p>
+<p><strong>Formula (conceptual):</strong> Data-Ink Ratio = Data Ink / Total Ink</p>
+<p>Goal: <strong>Maximize</strong> this ratio. Every drop of ink should represent actual data.</p>
+<div class="key-point">💡 <strong>Analogy:</strong> Like sending a Telegram — you delete every unnecessary word. In charts, delete background pictures, 3D shadows, heavy gridlines to save the viewer's "brain power."</div>
+
+<p><strong>What to remove to improve Data-Ink Ratio (common exam question):</strong></p>
+<ul>
+<li>Background colors/images</li>
+<li>Heavy gridlines</li>
+<li>3D effects and shadows</li>
+<li>Decorative borders</li>
+<li>Unnecessary legends (when only 1 data series)</li>
+</ul>
+
+<div class="key-point exam">🎯 <strong>Exam Trap:</strong> "Principle of minimal ink suggests removing ALL gridlines and labels" — this is <strong>FALSE</strong>. The principle says remove <em>non-essential</em> ink. Labels are essential for clarity! This is Question 5 on your paper.</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-important">Important</span> Contextual Factors — Audience Awareness</h3>
+<p>One chart does NOT fit all. You must tailor complexity to your audience:</p>
+<table class="comparison-table">
+<tr><th>Audience</th><th>Needs</th><th>Chart Style</th></tr>
+<tr><td><strong>Scientist</strong></td><td>Precision, verification</td><td>Detailed axes, error bars, scatter plots</td></tr>
+<tr><td><strong>Executive/CEO</strong></td><td>Speed, quick decisions</td><td>KPI dashboards, "Win or Lose?" in 5 seconds</td></tr>
+<tr><td><strong>Journalist/Public</strong></td><td>Accessibility, simplicity</td><td>Simple charts with explanatory captions</td></tr>
+</table>
+<div class="key-point">💡 <strong>Analogy:</strong> Cooking for different guests — Scientist gets raw ingredients + recipe, CEO gets a ready Thali, Journalist gets an Instagram-worthy plated dish.</div>
+</div>
+
+<div class="quiz-section">
+<h3>Practice MCQs — Design</h3>
+
+<div class="quiz-q" data-answer="3">
+<div class="q-type">MCQ · Paper Q1</div>
+<div class="q-text">Which of the following is NOT a principle of effective visual communication?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Clarity</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Cognitive load reduction</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Aesthetics</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Data obfuscation</button>
+</div>
+<div class="explanation"><strong>Correct: D) Data obfuscation.</strong> Obfuscation means hiding/obscuring data — the exact opposite of effective communication. Aesthetics IS a valid principle (design matters for engagement).</div>
+</div>
+
+<div class="quiz-q" data-answer="0">
+<div class="q-type">MCQ · Paper Q2</div>
+<div class="q-text">Visual hierarchy corresponds most closely to:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Ordering of content by importance</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Sorting data alphabetically</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Using only monochrome colors</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Making everything equally prominent</button>
+</div>
+<div class="explanation"><strong>Correct: A) Ordering of content by importance.</strong> Visual hierarchy uses size, color, and position to guide the eye to the most important element first. Making everything equally prominent is the anti-thesis of hierarchy.</div>
+</div>
+
+<div class="quiz-q" data-answer="2">
+<div class="q-type">MCQ · Application</div>
+<div class="q-text">For an Executive/CEO audience, the primary visualization requirement is:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) High precision with error bars</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Detailed methodology</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Quick insights, KPIs, minimal clutter</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Complex scatter plots</button>
+</div>
+<div class="explanation"><strong>Correct: C).</strong> Executives trust speed. They need to answer "Are we winning or losing?" in 5 seconds. Precision/error bars are for Scientists.</div>
+</div>
+</div>
+
+<div class="quiz-section">
+<h3>Subjective Practice</h3>
+<div class="subjective-q">
+<div class="marks">3 Marks · Short Answer</div>
+<div class="q-text">What is the Data-Ink Ratio? List two specific non-essential elements you'd remove from a cluttered monthly report.</div>
+<button class="toggle-ans" onclick="toggleModel(this)">Show Model Answer</button>
+<div class="model-ans">
+The <strong>Data-Ink Ratio</strong> is the proportion of ink used to display meaningful data versus the total ink used on a chart. It was proposed by <strong>Edward Tufte</strong>. The goal is to maximize this ratio — every ink element should convey information. (1 mark)<br><br>
+To improve it, I would remove:<br>
+1. <strong>Background colors or background images</strong> — they add no data value and distract from the numbers. (1 mark)<br>
+2. <strong>Heavy gridlines or decorative 3D effects</strong> — they add visual clutter and reduce the proportion of "data ink." (1 mark)
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===================== TOPIC 3: CHART TYPES ===================== -->
+<div class="topic-section" id="t3">
+<h2 class="section-title">Chart Types & Selection Logic</h2>
+<p class="section-sub">Weeks 3–5 · Choosing the right chart — the most testable topic</p>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> The Chart Selection Matrix</h3>
+<p>This is the single most important table for your exam:</p>
+<table class="comparison-table">
+<tr><th>Purpose</th><th>Chart Type</th><th>Data Type</th><th>Key Feature</th></tr>
+<tr><td><strong>Comparison</strong></td><td>Bar / Column Chart</td><td>Categorical</td><td>Bars have GAPS between them</td></tr>
+<tr><td><strong>Distribution</strong></td><td>Histogram</td><td>Continuous</td><td>Bars TOUCH each other (bins)</td></tr>
+<tr><td><strong>Trend</strong></td><td>Line Chart</td><td>Time-series</td><td>Shows seasonality, change over time</td></tr>
+<tr><td><strong>Relationship</strong></td><td>Scatter Plot</td><td>Two continuous variables</td><td>Shows correlation</td></tr>
+<tr><td><strong>Part-to-whole</strong></td><td>Pie Chart</td><td>Proportions</td><td>BAD for exact comparison / many categories</td></tr>
+<tr><td><strong>Intensity</strong></td><td>Heatmap</td><td>Matrix data</td><td>Use gradient (light→dark), NOT random colors</td></tr>
+</table>
+
+<div class="key-point exam">🎯 <strong>Critical Distinction (asked repeatedly):</strong><br>
+<strong>Bar Chart</strong> = Categorical data (Shoes vs Bags) → Bars have GAPS<br>
+<strong>Histogram</strong> = Continuous data (Age ranges 0-10, 10-20) → Bars TOUCH<br>
+If you use a Bar chart for frequency distribution of continuous data, you're using the wrong tool!</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-important">Important</span> When NOT to Use Pie Charts</h3>
+<ul>
+<li><strong>More than 5-6 categories</strong> — slices become too thin to compare</li>
+<li><strong>When exact comparison matters</strong> — human eyes are bad at comparing angles</li>
+<li><strong>3D pie charts</strong> — distort angles further, making accurate comparison impossible</li>
+</ul>
+<div class="key-point">💡 From your paper Q4: Pie chart should be avoided for part-to-whole when exact comparison matters. Answer: A) Pie chart.</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-important">Important</span> Anscombe's Quartet — The Statistical Trap</h3>
+<p>Different datasets can have the <strong>same mean and standard deviation</strong> but look completely different when plotted. This proves that <strong>visualization is mandatory</strong> — summary statistics alone can lie.</p>
+<div class="key-point">💡 This concept often appears as: "Why is visualization important even when we have statistical summaries?"</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-tip">Tip</span> Charts That Show Relationships</h3>
+<p>From your paper Q9 (multi-correct): Which charts best show relationships?</p>
+<p><strong>Scatter plot</strong> — the primary chart for correlation/relationships ✅</p>
+<p><strong>Heat map</strong> — shows intensity of relationships in a matrix (correlation matrix) ✅</p>
+<p>Line chart — shows trends over time, not primarily relationships ❌</p>
+<p>Histogram — shows distribution, not relationships ❌</p>
+</div>
+
+<div class="quiz-section">
+<h3>Practice MCQs — Charts</h3>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ · Fundamental</div>
+<div class="q-text">Which chart is the standard for showing frequency distribution of continuous data?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Bar Chart</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Histogram</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Scatter Plot</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Pie Chart</button>
+</div>
+<div class="explanation"><strong>Correct: B) Histogram.</strong> Histograms group continuous data into bins (ranges) and show frequency. Bar charts compare distinct categories. This is the #1 most confused pair.</div>
+</div>
+
+<div class="quiz-q" data-answer="0">
+<div class="q-type">MCQ · Application</div>
+<div class="q-text">For 15 different product categories, a pie chart is bad because:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Cluttered thin slices, hard to compare</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Python cannot plot it</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Uses too much color</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) It is illegal in statistics</button>
+</div>
+<div class="explanation"><strong>Correct: A).</strong> With 15 categories, slices become very thin and nearly impossible to compare visually. Humans are bad at comparing angles. Use a bar chart instead.</div>
+</div>
+
+<div class="quiz-q" data-answer="2">
+<div class="q-type">MCQ · Scenario</div>
+<div class="q-text">You want to check if "Study Hours" and "Exam Marks" are correlated for 100 students. Best chart?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Line Chart</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Histogram</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Scatter Plot</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Bar Chart</button>
+</div>
+<div class="explanation"><strong>Correct: C) Scatter Plot.</strong> When checking relationship/correlation between two continuous variables, scatter plots are the standard. Line charts are for trends over time.</div>
+</div>
+</div>
+
+<div class="quiz-section">
+<h3>Subjective Practice</h3>
+<div class="subjective-q">
+<div class="marks">5 Marks · Long Answer</div>
+<div class="q-text">You have "Customer Age" (continuous) and "Product Type" (categorical). (a) Which chart for Age distribution? (b) Which for Product Type comparison? (c) Explain the fundamental difference.</div>
+<button class="toggle-ans" onclick="toggleModel(this)">Show Model Answer</button>
+<div class="model-ans">
+<strong>(a) Histogram</strong> for Age distribution (it is continuous numerical data). (1 mark)<br><br>
+<strong>(b) Bar Chart</strong> for Product Type comparison (it is categorical data — Shoes, Bags). (1 mark)<br><br>
+<strong>(c) Fundamental difference:</strong> A <strong>Bar Chart</strong> compares distinct, separate categories — each bar represents a unique item (Shoes vs Bags vs Hats). The bars have gaps between them because the categories are discrete and independent. A <strong>Histogram</strong>, on the other hand, shows how frequently continuous data falls within consecutive numerical ranges or "bins" (0–10, 10–20, 20–30). The bars touch each other because the ranges are continuous — there is no gap between the end of one bin and the start of the next. The x-axis of a bar chart has labels (names), while the x-axis of a histogram has numbers (ranges). (3 marks)
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===================== TOPIC 4: STORYTELLING ===================== -->
+<div class="topic-section" id="t4">
+<h2 class="section-title">Data Storytelling Principles</h2>
+<p class="section-sub">Weeks 4–7 · The narrative arc — turning data into decisions</p>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> The CCR Framework</h3>
+<p>Every data story must follow this arc:</p>
+<div class="cheatsheet">
+<div class="cheat-item" style="border-left: 3px solid var(--accent);">
+<div class="label">Stage 1</div>
+<div class="value">Context</div>
+<div class="detail">What is "normal"? Set the scene. "Our sales average ₹10L/month"</div>
+</div>
+<div class="cheat-item" style="border-left: 3px solid var(--red);">
+<div class="label">Stage 2</div>
+<div class="value">Conflict</div>
+<div class="detail">What changed? The anomaly/problem. "Sales suddenly dropped 40%"</div>
+</div>
+<div class="cheat-item" style="border-left: 3px solid var(--green);">
+<div class="label">Stage 3</div>
+<div class="value">Resolution</div>
+<div class="detail">What's the action? "Found a server bug — must fix today"</div>
+</div>
+</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Noise vs. Outliers</h3>
+<p>In Big Data: <strong>99% is Noise</strong> (normal, boring transactions). <strong>1% is Outliers</strong> (unusual, significant).</p>
+<p><strong>Storytelling = filtering the Noise to highlight the Outlier.</strong></p>
+<div class="key-point">💡 <strong>CCTV Analogy:</strong> 99 screens show empty hallways (noise). 1 shows a burglar (outlier). You report the burglar, not "Hallway 1 is empty." This is what data storytelling does.</div>
+<div class="key-point exam">🎯 <strong>MCQ pattern:</strong> "The 1% that behaves differently is called?" — Answer: <strong>The Outlier</strong> (not "The Insight" or "The Conflict" — those are storytelling stages, not data categories)</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Narrative Types — Who Holds the Remote?</h3>
+<table class="comparison-table">
+<tr><th>Type</th><th>Control</th><th>Best For</th><th>Example</th></tr>
+<tr><td><strong>Author-Driven</strong></td><td>Presenter controls flow</td><td>Persuasion</td><td>TED Talk, Investor Pitch</td></tr>
+<tr><td><strong>Reader-Driven</strong></td><td>Audience explores freely</td><td>Discovery/Analysis</td><td>PowerBI Dashboard</td></tr>
+<tr><td><strong>Hybrid (Martini Glass)</strong></td><td>Author intro → Reader explores</td><td>Reports with Q&A</td><td>Guided summary → Open dashboard</td></tr>
+</table>
+<div class="key-point">💡 <strong>Martini Glass:</strong> The stem = tight author-driven intro (context + key findings). The bowl = opens up for reader exploration. Perfect for monthly reports: "Here are 3 KPIs → now let's open the dashboard for questions."</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-important">Important</span> Progressive Disclosure</h3>
+<p><strong>Definition:</strong> Revealing complex information gradually, step-by-step.</p>
+<p><strong>Google Maps analogy:</strong> Open map → see whole country → zoom into city → zoom into street. You don't see every street name at the country level (that would be clutter).</p>
+<p>This is how dashboards should work — start with high-level KPIs, allow drill-down for details.</p>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-important">Important</span> Presentation Formats</h3>
+<p><strong>Pecha Kucha:</strong> 20 slides × 20 seconds each = 6 minutes 40 seconds total. Forces brevity and visual impact. Prevents "Death by PowerPoint."</p>
+<p><strong>Data Comics:</strong> Comic-strip panels showing sequential data events.</p>
+<p><strong>Dual Coding:</strong> Combining verbal + visual for better memory retention.</p>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-important">Important</span> The Three-AI Model (Weeks 11–13)</h3>
+<div class="cheatsheet">
+<div class="cheat-item"><div class="label">Step 1</div><div class="value">Insight</div><div class="detail">"What happened?" — The hidden fact in data</div></div>
+<div class="cheat-item"><div class="label">Step 2</div><div class="value">Interpretation</div><div class="detail">"What does it mean?" — The explanation</div></div>
+<div class="cheat-item"><div class="label">Step 3</div><div class="value">Impact</div><div class="detail">"Why does it matter?" — The value/action</div></div>
+</div>
+</div>
+
+<div class="quiz-section">
+<h3>Practice MCQs — Storytelling</h3>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ</div>
+<div class="q-text">Which storytelling style allows users to explore data themselves?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Author-driven</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Reader-driven</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Slide-driven</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Presenter-driven</button>
+</div>
+<div class="explanation"><strong>Correct: B) Reader-driven.</strong> The audience controls the flow — non-linear, exploratory. Like an interactive dashboard where users filter data.</div>
+</div>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ</div>
+<div class="q-text">In the Martini Glass narrative, the "stem" represents:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Free exploration phase</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Author-driven guided introduction</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) The conclusion</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Raw data dump</button>
+</div>
+<div class="explanation"><strong>Correct: B).</strong> The stem is narrow/controlled — the author guides the narrative. The bowl opens wide for reader exploration.</div>
+</div>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ</div>
+<div class="q-text">Progressive Disclosure primarily helps with:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Increasing file size</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Reducing cognitive load step-by-step</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Making charts colorful</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Hiding bad data</button>
+</div>
+<div class="explanation"><strong>Correct: B).</strong> It reveals information gradually so users aren't overwhelmed. Start with global view → zoom into details on demand.</div>
+</div>
+</div>
+
+<div class="quiz-section">
+<h3>Subjective Practice</h3>
+<div class="subjective-q">
+<div class="marks">5 Marks · Application</div>
+<div class="q-text">Apply the Context → Conflict → Resolution framework to: An Online Researcher finds a sudden spike in website traffic from a specific country due to a viral marketing campaign.</div>
+<button class="toggle-ans" onclick="toggleModel(this)">Show Model Answer</button>
+<div class="model-ans">
+<strong>Context (Setting the Scene):</strong> "Our website traffic from Country X usually averages 10,000 visits/day. This has been stable for the past 6 months, with minor weekly fluctuations." — This establishes what "normal" looks like. (1.5 marks)<br><br>
+<strong>Conflict (The Anomaly):</strong> "Yesterday, traffic from Country X suddenly spiked to 50,000 visits — a 5x increase and a massive outlier in our data. This is the 1% anomaly that disrupts the 99% normal pattern." — This identifies the problem/surprise that demands attention. (1.5 marks)<br><br>
+<strong>Resolution (The Action):</strong> "Investigation revealed a viral marketing post by a local influencer drove this traffic. Recommended action: immediately launch geo-targeted retargeting ads for these new users, translate the landing page to the local language, and allocate 20% of next month's marketing budget to capitalize on this momentum." — This converts the insight into a concrete, actionable recommendation. (2 marks)
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===================== TOPIC 5: MATPLOTLIB ===================== -->
+<div class="topic-section" id="t5">
+<h2 class="section-title">Python — Matplotlib</h2>
+<p class="section-sub">Weeks 3–7 · The grandfather of Python plotting — static, publication-quality</p>
+
+<div class="concept-card">
+<h3><span class="tag tag-code">Code</span> The Standard Workflow</h3>
+<p><strong>Import → Define Data → Plot → Customize → Show</strong></p>
+<pre>import matplotlib.pyplot as plt
+
+# Define data
+products = ['Mobile', 'Laptop', 'Headphone']
+sales = [500, 300, 150]
+
+# Plot
+plt.bar(products, sales)        # Bar chart
+# plt.plot(products, sales)     # Line chart
+# plt.scatter(x_data, y_data)   # Scatter plot
+# plt.hist(data, bins=10)       # Histogram
+
+# Customize
+plt.title("Tech Sales 2024")
+plt.xlabel("Product Category")
+plt.ylabel("Units Sold")
+
+# Display
+plt.show()  # Renders the plot on screen</pre>
+<div class="key-point exam">🎯 <strong>Exam must-know:</strong> <code>plt.show()</code> is the command that renders the final plot to the user's screen. Not plt.render(), plt.print(), or plt.draw().</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-code">Code</span> Key Plot Functions</h3>
+<table class="comparison-table">
+<tr><th>Function</th><th>Chart Type</th><th>Use Case</th></tr>
+<tr><td><code>plt.bar(x, y)</code></td><td>Vertical Bar</td><td>Comparing categories</td></tr>
+<tr><td><code>plt.barh(x, y)</code></td><td>Horizontal Bar</td><td>Long category labels</td></tr>
+<tr><td><code>plt.plot(x, y)</code></td><td>Line Chart</td><td>Trends over time</td></tr>
+<tr><td><code>plt.scatter(x, y)</code></td><td>Scatter Plot</td><td>Relationships/Correlation</td></tr>
+<tr><td><code>plt.hist(data, bins)</code></td><td>Histogram</td><td>Frequency distribution</td></tr>
+</table>
+<div class="key-point exam">🎯 <strong>barh vs bar:</strong> <code>plt.barh()</code> creates HORIZONTAL bars — use when labels are long strings. This is a specific exam question.</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-code">Code</span> Subplots — Multi-Chart Dashboard</h3>
+<pre># Create 2x1 grid (2 rows, 1 column)
+fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
+
+# First subplot
+ax1.plot(months, sales, color='blue')
+ax1.set_title("Sales Trend")
+
+# Second subplot
+ax2.plot(months, profit, color='green')
+ax2.set_title("Profit Trend")
+
+plt.show()</pre>
+<p><strong>Key parameters:</strong></p>
+<ul>
+<li><code>plt.subplots(2, 2)</code> → creates 4 plots (2 rows × 2 columns)</li>
+<li><code>sharex=True</code> → all subplots share the same X-axis (usually time). If you zoom into Jan on one, others align automatically.</li>
+</ul>
+<div class="key-point">💡 <strong>CCTV Analogy:</strong> Subplots = a security wall with 4 camera feeds. See the full picture at a glance without switching tabs.</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Matplotlib Customization Components</h3>
+<p>From your paper Q10 (multi-correct): Components of Matplotlib customization include:</p>
+<p>✅ <strong>Labels</strong> (plt.xlabel, plt.ylabel, plt.title)<br>
+✅ <strong>Axes limits</strong> (plt.xlim, plt.ylim)<br>
+✅ <strong>Color palettes</strong> (color parameter)<br>
+❌ <strong>SQL queries</strong> — NOT a Matplotlib feature!</p>
+</div>
+
+<div class="quiz-section">
+<h3>Practice MCQs — Matplotlib</h3>
+
+<div class="quiz-q" data-answer="2">
+<div class="q-type">MCQ</div>
+<div class="q-text">Which command displays the final plot on screen in Matplotlib?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) plt.render()</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) plt.print()</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) plt.show()</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) plt.draw()</button>
+</div>
+<div class="explanation"><strong>Correct: C) plt.show().</strong> This is the standard display command in Matplotlib.</div>
+</div>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ</div>
+<div class="q-text">plt.subplots(2, 2) creates how many plots?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) 2 plots total</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) 4 plots total (2 rows × 2 cols)</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) 2 plots side-by-side</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) 1 plot with 2 lines</button>
+</div>
+<div class="explanation"><strong>Correct: B) 4 plots total.</strong> 2 rows × 2 columns = 4 individual axes/subplots.</div>
+</div>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ</div>
+<div class="q-text">Which Python function creates a Histogram for data distribution?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) plt.bar()</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) plt.hist()</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) plt.scatter()</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) plt.plot()</button>
+</div>
+<div class="explanation"><strong>Correct: B) plt.hist().</strong> plt.bar() is for categorical comparison (bar charts), plt.hist() is specifically for frequency distribution of continuous data.</div>
+</div>
+</div>
+
+<div class="quiz-section">
+<h3>Subjective Practice</h3>
+<div class="subjective-q">
+<div class="marks">5 Marks · Coding</div>
+<div class="q-text">Write Python code using Matplotlib to create a scatter plot showing relationship between Study Hours (x) and Marks (y). Include title "Study vs Performance" and label both axes.</div>
+<button class="toggle-ans" onclick="toggleModel(this)">Show Model Answer</button>
+<div class="model-ans">
+<pre style="background:transparent;border:none;padding:0;color:var(--text);">import matplotlib.pyplot as plt
+
+# Define data
+hours = [2, 4, 6, 8, 10]
+marks = [40, 55, 70, 82, 95]
+
+# Create scatter plot
+plt.scatter(hours, marks, color='blue', marker='o')
+
+# Add labels and title
+plt.title("Study vs Performance")
+plt.xlabel("Study Hours")
+plt.ylabel("Marks Obtained")
+
+# Display
+plt.show()
+# plt.show() renders the plot to the user's screen.
+# Without it, the chart is created in memory but never displayed.</pre>
+<strong>Grading:</strong> 1 mark for import + data, 2 marks for plt.scatter(), 1 mark for labels/title, 1 mark for explaining plt.show().
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===================== TOPIC 6: PLOTLY ===================== -->
+<div class="topic-section" id="t6">
+<h2 class="section-title">Python — Plotly (Interactive)</h2>
+<p class="section-sub">Week 8 · The modern choice for interactive, web-based charts</p>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Plotly vs Matplotlib</h3>
+<table class="comparison-table">
+<tr><th>Feature</th><th>Matplotlib</th><th>Plotly</th></tr>
+<tr><td>Output</td><td>Static images</td><td>Interactive (zoom, hover, click)</td></tr>
+<tr><td>Best for</td><td>Publications, printing</td><td>Web apps, digital reports</td></tr>
+<tr><td>Hover info</td><td>❌</td><td>✅ Tooltips on hover</td></tr>
+<tr><td>Animation</td><td>Limited</td><td>✅ animation_frame</td></tr>
+<tr><td>Library</td><td>matplotlib.pyplot</td><td>plotly.express</td></tr>
+</table>
+<div class="key-point exam">🎯 <strong>Exam answer:</strong> The main advantage of Plotly over Matplotlib is <strong>interactivity</strong> (zooming, hovering, clicking). NOT "faster" or "no coding needed."</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-code">Code</span> Key Plotly Functions</h3>
+<pre>import plotly.express as px
+
+# Heatmap
+fig = px.imshow(data_matrix, color_continuous_scale='Viridis')
+fig.show()
+
+# Animated Scatter (Gapminder example)
+fig = px.scatter(gapminder, x="gdpPerCap", y="lifeExp",
+                 animation_frame="year",    # Play button / timeline
+                 animation_group="country", # Groups bubbles by country
+                 size="pop",                # Bubble size
+                 color="continent",         # Color coding
+                 hover_name="country")      # Tooltip label
+fig.show()
+
+# Geographical Map
+fig = px.scatter_geo(df, locations="iso_code", size="value")
+fig.show()
+
+# 3D Scatter
+fig = px.scatter_3d(df, x="x", y="y", z="z")
+fig.show()</pre>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-important">Important</span> Key Plotly Parameters</h3>
+<table class="comparison-table">
+<tr><th>Parameter</th><th>Purpose</th></tr>
+<tr><td><code>animation_frame</code></td><td>Creates play button / timeline slider</td></tr>
+<tr><td><code>animation_group</code></td><td>Groups data points across frames (e.g., by country)</td></tr>
+<tr><td><code>size</code></td><td>Sets bubble size based on a column (e.g., population)</td></tr>
+<tr><td><code>color</code></td><td>Color-codes by category (e.g., continent)</td></tr>
+<tr><td><code>hover_name</code></td><td>Sets the label shown on hover tooltip</td></tr>
+<tr><td><code>rangeslider=True</code></td><td>Adds zoom/pan bar for time series</td></tr>
+</table>
+<div class="key-point exam">🎯 <strong>MCQ pattern:</strong> "Which parameter defines bubble size?" → Answer: <code>size</code>. "rangeslider=True adds?" → A bar at the bottom for zoom/pan.</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-code">Code</span> Plotly Subplots (make_subplots)</h3>
+<p>Used to combine different chart types on one canvas — like a dashboard.</p>
+<pre>from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+
+fig = make_subplots(rows=1, cols=2)
+fig.add_trace(go.Bar(x=categories, y=values), row=1, col=1)
+fig.add_trace(go.Scatter(x=months, y=trend), row=1, col=2)
+fig.show()</pre>
+</div>
+
+<div class="quiz-section">
+<h3>Practice MCQs — Plotly</h3>
+
+<div class="quiz-q" data-answer="2">
+<div class="q-type">MCQ</div>
+<div class="q-text">Which Plotly function creates an interactive heatmap from a data matrix?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) px.bar</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) px.scatter_3d</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) px.imshow</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) px.area</button>
+</div>
+<div class="explanation"><strong>Correct: C) px.imshow.</strong> It takes a matrix of data and renders it as a heatmap with color scales.</div>
+</div>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ</div>
+<div class="q-text">Which Plotly function plots data on a world map using ISO country codes?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) px.map_3d</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) px.scatter_geo</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) px.world_map</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) px.atlas</button>
+</div>
+<div class="explanation"><strong>Correct: B) px.scatter_geo.</strong> It uses ISO codes to automatically plot data points on a world map projection.</div>
+</div>
+
+<div class="quiz-q" data-answer="3">
+<div class="q-type">MCQ</div>
+<div class="q-text">In px.scatter, which parameter sets the bubble size based on a data column?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) animation_group</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) color</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) hover_data</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) size</button>
+</div>
+<div class="explanation"><strong>Correct: D) size.</strong> e.g., size="pop" makes larger bubbles for countries with bigger populations.</div>
+</div>
+</div>
+</div>
+
+<!-- ===================== TOPIC 7: EXCEL ===================== -->
+<div class="topic-section" id="t7">
+<h2 class="section-title">Excel Charts & Features</h2>
+<p class="section-sub">Weeks 9–10 · The daily driver for business analysts</p>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Excel Chart Taxonomy</h3>
+<table class="comparison-table">
+<tr><th>Chart</th><th>When to Use</th><th>Key Detail</th></tr>
+<tr><td><strong>Column (Vertical)</strong></td><td>Comparing categories, time-based</td><td>Clustered / Stacked / 100% Stacked</td></tr>
+<tr><td><strong>Bar (Horizontal)</strong></td><td>When labels are long text</td><td>"United Arab Emirates" won't fit vertically</td></tr>
+<tr><td><strong>Line</strong></td><td>Trends over time</td><td>Good for seasonality</td></tr>
+<tr><td><strong>Area</strong></td><td>Volume/cumulative totals over time</td><td>Like Line but filled below</td></tr>
+<tr><td><strong>Combo</strong></td><td>Two different scales (₹ + %)</td><td>Uses Secondary Axis</td></tr>
+<tr><td><strong>Sparklines</strong></td><td>In-cell mini-charts</td><td>Show trends without clutter</td></tr>
+</table>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Sparklines</h3>
+<p><strong>Definition:</strong> Tiny charts that fit inside a single Excel cell, showing trends at a glance.</p>
+<div class="key-point">💡 <strong>ECG Analogy:</strong> Like a heart monitor beside a patient's bed — shows if the heartbeat is stable or crashing without needing labels or legends.</div>
+<p><strong>Use case:</strong> A Sales Dashboard table with 50 products — put sparklines in the last column to show 12-month trends for each product compactly.</p>
+<div class="key-point exam">🎯 From your paper Q7: "Sparklines in Excel are mini-charts embedded inside a single cell" — Answer: <strong>TRUE</strong></div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Secondary Axis & Combo Charts</h3>
+<p><strong>Problem:</strong> Revenue is in Millions, Profit is in %. Plotting both on the same axis makes % invisible.</p>
+<p><strong>Solution:</strong> Combo Chart with Secondary Axis — Revenue as Column (left axis), Profit % as Line (right axis).</p>
+<div class="key-point">💡 <strong>Giraffe & Mouse Analogy:</strong> Using the Giraffe's ruler, the Mouse is invisible. You need a second ruler (secondary axis) for the Mouse.</div>
+<p><strong>Excel steps:</strong></p>
+<p>1. Select data → Insert → Combo Chart<br>
+2. Set Revenue = Column type, Profit = Line type<br>
+3. Check "Secondary Axis" box for the Profit series</p>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Heatmaps in Excel (Conditional Formatting)</h3>
+<p><strong>Critical:</strong> A heatmap in Excel is NOT created via Insert → Chart. It's created via:</p>
+<p><strong>Select Data → Home → Conditional Formatting → Color Scales</strong></p>
+<p>It applies color gradients directly to cells. Red = Hot/High, Blue = Cold/Low.</p>
+<div class="key-point">💡 <strong>Thermal Camera Analogy:</strong> Instantly spot outliers — no need to read individual digits.</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-important">Important</span> 100% Stacked Column Chart</h3>
+<p>Shows percentage contribution — every bar is the SAME height (100%). Good for ratios, <strong>dangerous for comparing absolute totals</strong> (it hides the fact that the total market might be shrinking since all bars look equal).</p>
+</div>
+
+<div class="quiz-section">
+<h3>Practice MCQs — Excel</h3>
+
+<div class="quiz-q" data-answer="2">
+<div class="q-type">MCQ</div>
+<div class="q-text">To correctly plot Revenue (₹ Millions) and Profit (%) in Excel, you need:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Logarithmic Scale</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) 3D Rotation</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Secondary Axis (Combo Chart)</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Data Labels</button>
+</div>
+<div class="explanation"><strong>Correct: C).</strong> Different scales need a Combo Chart with Secondary Axis. Without it, the % values appear flat/invisible next to millions.</div>
+</div>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ</div>
+<div class="q-text">To create a cell-level heatmap in Excel, navigate to:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Insert → Charts → Heatmap</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Home → Conditional Formatting → Color Scales</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Data → What-If Analysis</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) View → Page Layout</button>
+</div>
+<div class="explanation"><strong>Correct: B).</strong> Heatmaps in Excel use Conditional Formatting (Color Scales), not the Insert Chart menu. This is a very common trick question.</div>
+</div>
+
+<div class="quiz-q" data-answer="0">
+<div class="q-type">MCQ</div>
+<div class="q-text">Sparklines in Excel are unique because:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) They are tiny charts inside a single cell</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) They are always 3D</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) They require Python coding</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) They can only show Pie charts</button>
+</div>
+<div class="explanation"><strong>Correct: A).</strong> Sparklines are cell-sized mini-charts. They don't need labels or legends and are perfect for compact dashboards.</div>
+</div>
+</div>
+</div>
+
+<!-- ===================== TOPIC 8: AI TOOLS ===================== -->
+<div class="topic-section" id="t8">
+<h2 class="section-title">AI Tools — Jasper & Tom</h2>
+<p class="section-sub">Weeks 11–13 · Automating narratives and presentations</p>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Jasper — The Brain (NLG)</h3>
+<p><strong>Function:</strong> Natural Language Generation — converts raw data/tables into coherent text stories.</p>
+<p><strong>Key capability:</strong> Rewrite the SAME data in different tones:</p>
+<table class="comparison-table">
+<tr><th>Tone</th><th>Style</th><th>Example</th></tr>
+<tr><td><strong>Business</strong></td><td>Concise, factual</td><td>"Revenue increased 40% due to marketing efficiency"</td></tr>
+<tr><td><strong>Journalistic</strong></td><td>Emotional, narrative</td><td>"The startup turned adversity into a dream"</td></tr>
+<tr><td><strong>Inspirational</strong></td><td>Vision-focused</td><td>"Every quarter brings us closer to redefining the industry"</td></tr>
+</table>
+<div class="key-point">💡 <strong>Analogy:</strong> Jasper is a Scriptwriter. You give it the police report (raw facts) and tell it the genre — thriller, technical report, or press release.</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Tom — The Artist (Design)</h3>
+<p><strong>Function:</strong> AI-powered automated slide design. Text → beautiful presentation.</p>
+<p><strong>Solves:</strong> The "Blank Page Problem" — you don't stare at an empty slide.</p>
+<p><strong>Features:</strong> Auto-Pagination (breaks text into logical slides), Visual Matching (selects mood-appropriate images).</p>
+<div class="key-point">💡 <strong>Analogy:</strong> Tom is the Director & Set Designer. Once Jasper (writer) hands over the script, Tom decides how the "movie" looks.</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> The Workflow: Jasper + Tom</h3>
+<div class="cheatsheet">
+<div class="cheat-item"><div class="label">Step 1</div><div class="value">Raw Data</div><div class="detail">CSV / Excel file with numbers</div></div>
+<div class="cheat-item"><div class="label">Step 2</div><div class="value">Jasper</div><div class="detail">Generates narrative text (the "Script")</div></div>
+<div class="cheat-item"><div class="label">Step 3</div><div class="value">Tom</div><div class="detail">Generates presentation (the "Movie")</div></div>
+</div>
+<div class="key-point exam">🎯 <strong>MCQ answer:</strong> Standard workflow = "Jasper generates narrative → Tom generates slides." NOT the other way around.</div>
+</div>
+
+<div class="quiz-section">
+<h3>Practice MCQs — AI Tools</h3>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ</div>
+<div class="q-text">Which AI tool specializes in Natural Language Generation from data?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Tom</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Jasper</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Tableau</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Plotly</button>
+</div>
+<div class="explanation"><strong>Correct: B) Jasper.</strong> Jasper = NLG (Data → Text). Tom = Design (Text → Slides).</div>
+</div>
+
+<div class="quiz-q" data-answer="2">
+<div class="q-type">MCQ</div>
+<div class="q-text">In the Three-AI Model, "Impact" answers:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) What happened?</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) What does it mean?</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Why does it matter?</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Who is affected?</button>
+</div>
+<div class="explanation"><strong>Correct: C).</strong> Insight = What happened, Interpretation = What it means, Impact = Why it matters / the value.</div>
+</div>
+
+<div class="quiz-q" data-answer="2">
+<div class="q-type">MCQ</div>
+<div class="q-text">Tom primarily solves:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Complex statistics analysis</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Writing Python code</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) The "Blank Page" problem (auto slide design)</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Collecting data from the internet</button>
+</div>
+<div class="explanation"><strong>Correct: C).</strong> Tom automates slide design — layouts, images, pagination — so you never stare at a blank slide.</div>
+</div>
+</div>
+</div>
+
+<!-- ===================== TOPIC 9: DOMAINS ===================== -->
+<div class="topic-section" id="t9">
+<h2 class="section-title">Domain-Specific Visualization</h2>
+<p class="section-sub">Weeks 11–13 · Journalism, Science, Business — different rules for different worlds</p>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Three Domains Compared</h3>
+<table class="comparison-table">
+<tr><th>Domain</th><th>Goal</th><th>Key Technique</th><th>Audience</th></tr>
+<tr><td><strong>Journalism</strong></td><td>Simplify complexity</td><td>Scrollytelling, Accessible charts</td><td>General Public</td></tr>
+<tr><td><strong>Science</strong></td><td>Precision & Reproducibility</td><td>Kaplan-Meier, Genome Browsers</td><td>Expert peers</td></tr>
+<tr><td><strong>Business</strong></td><td>Speed & Action</td><td>KPI Dashboards</td><td>Managers & Executives</td></tr>
+</table>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Scrollytelling (Journalism)</h3>
+<p><strong>Definition:</strong> A web technique where visuals change dynamically as the user scrolls down.</p>
+<p><strong>Example:</strong> NYT "Classroom Airflow" — as you scroll, windows open, fans turn on, virus particles move differently. Explains complex simulations without technical papers.</p>
+<p><strong>Why it works:</strong> User controls the pace (unlike video). Shows one concept at a time. Reduces cognitive load.</p>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-important">Important</span> Election Map Pitfall</h3>
+<p><strong>Problem:</strong> Using absolute counts (total votes) on maps → just shows population density (where people live), NOT political preference.</p>
+<p><strong>Solution:</strong> Use <strong>Rates/Percentages</strong> (votes per capita) to show true political leaning.</p>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Scientific Charts</h3>
+<ul>
+<li><strong>Kaplan-Meier (Survival Curves)</strong> — shows patient survival probability over time. A bar chart only shows the end result; Kaplan-Meier shows WHEN patients drop out or recover during a study.</li>
+<li><strong>Genome Browsers</strong> — visualizing massive DNA sequences</li>
+<li><strong>Phylogenetic Trees</strong> — evolutionary relationships (family tree for species)</li>
+<li><strong>Choropleth Maps</strong> — temperature/climate changes across regions</li>
+</ul>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Business Dashboard Types</h3>
+<table class="comparison-table">
+<tr><th>Type</th><th>Focus</th><th>Analogy</th><th>Example KPI</th></tr>
+<tr><td><strong>Operational</strong></td><td>Real-time monitoring</td><td>Car Speedometer</td><td>Server uptime, call queue</td></tr>
+<tr><td><strong>Analytical</strong></td><td>Deep-dive into trends</td><td>Engine Diagnostic</td><td>Why did sales drop?</td></tr>
+<tr><td><strong>Strategic</strong></td><td>Long-term high-level</td><td>GPS Map</td><td>Yearly revenue growth</td></tr>
+</table>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Geospatial Visualizations</h3>
+<p>From your paper Q3: Which domain uses geospatial visualizations?</p>
+<p><strong>Answer: D) All of the above</strong> — Journalism (election maps), Public Policy (resource allocation), Climate Science (temperature maps).</p>
+</div>
+
+<div class="quiz-section">
+<h3>Practice MCQs — Domains</h3>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ</div>
+<div class="q-text">Scrollytelling is primarily used in which domain?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Scientific Research</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Journalism & Public Policy</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Database Management</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Financial Auditing</button>
+</div>
+<div class="explanation"><strong>Correct: B).</strong> Scrollytelling simplifies complex stories (like COVID airflow) for a general audience through scroll-triggered visual changes.</div>
+</div>
+
+<div class="quiz-q" data-answer="2">
+<div class="q-type">MCQ</div>
+<div class="q-text">Which dashboard focuses on real-time metrics and alerts?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Strategic</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Analytical</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Operational</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Investor Deck</button>
+</div>
+<div class="explanation"><strong>Correct: C) Operational.</strong> Like a car speedometer — real-time, immediate. Strategic = long-term (GPS). Analytical = deep-dive (engine diagnostic).</div>
+</div>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ</div>
+<div class="q-text">Which chart is essential in Medical Science for survival probabilities?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) Pie Chart</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Kaplan-Meier Plot</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Sankey Diagram</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Bar Chart</button>
+</div>
+<div class="explanation"><strong>Correct: B).</strong> Kaplan-Meier (Survival Curves) show when patients drop out/recover during a study — something a bar chart (which only shows final outcomes) cannot capture.</div>
+</div>
+</div>
+</div>
+
+<!-- ===================== TOPIC 10: PITFALLS ===================== -->
+<div class="topic-section" id="t10">
+<h2 class="section-title">Common Pitfalls & Deceptive Practices</h2>
+<p class="section-sub">Weeks 1–3, 11–13 · The dark side — what NOT to do</p>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> The Four Deadly Pitfalls</h3>
+<table class="comparison-table">
+<tr><th>Pitfall</th><th>What It Does</th><th>Why It's Wrong</th></tr>
+<tr><td><strong>Truncated Axis</strong></td><td>Y-axis starts at 50 instead of 0</td><td>Makes a tiny 2% change look like a 200% crash</td></tr>
+<tr><td><strong>3D Charts</strong></td><td>Adds perspective/depth</td><td>Distorts angles, impossible to compare sizes accurately</td></tr>
+<tr><td><strong>Cherry Picking</strong></td><td>Shows only favorable time ranges</td><td>Hides the full picture (e.g., show Dec growth, hide Jan crash)</td></tr>
+<tr><td><strong>Data Dump</strong></td><td>Puts EVERYTHING on one slide</td><td>High cognitive load, audience disengagement, "Death by PowerPoint"</td></tr>
+</table>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-must">Must Know</span> Truncated Axis — The Most Tested Pitfall</h3>
+<p>Starting the Y-axis at a number other than 0 (e.g., 50) makes small changes look enormous.</p>
+<div class="key-point exam">🎯 <strong>Exam answer:</strong> A Truncated Axis is misleading because it "exaggerates the visual difference between values, implying a larger change than actually exists." It destroys trust.</div>
+<div class="key-point">💡 <strong>News Check:</strong> When business channels show stocks "crashing," check the Y-axis — they often zoom in to make a 1% drop look like a disaster.</div>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-important">Important</span> Death by PowerPoint</h3>
+<p><strong>Definition:</strong> Overloading slides with excessive text and bullet points, causing audience disengagement.</p>
+<p><strong>Solution:</strong> Use visuals over text. Follow the Context → Conflict → Resolution arc. Use Progressive Disclosure. Consider Pecha Kucha (20×20) format.</p>
+</div>
+
+<div class="concept-card">
+<h3><span class="tag tag-important">Important</span> Ethical Responsibility</h3>
+<p>As an Ethical Data Analyst, you must:</p>
+<ul>
+<li>Spot these tricks to avoid being fooled by fake news</li>
+<li>Avoid creating misleading reports yourself</li>
+<li>Always start Y-axis at 0 (or clearly mark if truncated)</li>
+<li>Show the full time range, not just favorable periods</li>
+<li>Use 2D charts for accurate comparison</li>
+</ul>
+</div>
+
+<div class="quiz-section">
+<h3>Practice MCQs — Pitfalls</h3>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ · Paper Question</div>
+<div class="q-text">"Principle of minimal ink suggests removing ALL gridlines and labels." True or False?</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) TRUE</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) FALSE</button>
+</div>
+<div class="explanation"><strong>Correct: B) FALSE.</strong> The principle says remove NON-ESSENTIAL ink. Labels are essential for clarity — removing them makes the chart unreadable. Only remove decorative elements (3D effects, heavy gridlines, backgrounds).</div>
+</div>
+
+<div class="quiz-q" data-answer="1">
+<div class="q-type">MCQ</div>
+<div class="q-text">A Truncated Axis is misleading because:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) It hides data labels</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) It exaggerates visual differences, implying larger change than exists</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) It uses too much ink</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) It makes the chart too small</button>
+</div>
+<div class="explanation"><strong>Correct: B).</strong> By starting at (say) 50 instead of 0, a change from 50 to 52 looks like a 100% jump visually, when it's actually only 4%.</div>
+</div>
+
+<div class="quiz-q" data-answer="2">
+<div class="q-type">MCQ</div>
+<div class="q-text">"Death by PowerPoint" refers to:</div>
+<div class="options">
+<button class="opt-btn" onclick="checkAns(this,0)">A) A short presentation</button>
+<button class="opt-btn" onclick="checkAns(this,1)">B) Using too many images</button>
+<button class="opt-btn" onclick="checkAns(this,2)">C) Overloading slides with text/bullets, causing disengagement</button>
+<button class="opt-btn" onclick="checkAns(this,3)">D) Using dark backgrounds</button>
+</div>
+<div class="explanation"><strong>Correct: C).</strong> It's about excessive text, not images. The solution is visual storytelling with the CCR framework.</div>
+</div>
+</div>
+
+<div class="quiz-section">
+<h3>Subjective Practice — Case Study</h3>
+<div class="subjective-q">
+<div class="marks">15+ Marks · Case Study (Long Answer)</div>
+<div class="q-text">Design a climate-change awareness dashboard for the general public. It should show temperature trends (30 years), seasonal variation, anomalies, interactive elements, and a clear narrative. Tasks: (1) Choose graphs with justification, (2) Apply visual hierarchy and clarity, (3) Outline the storytelling flow, (4) Suggest implementation in Python + Excel.</div>
+<button class="toggle-ans" onclick="toggleModel(this)">Show Model Answer</button>
+<div class="model-ans">
+<strong>1. Graph Choices & Justification:</strong><br>
+• <strong>Line Chart</strong> for 30-year temperature trends — best for showing change over time, seasonality, and long-term patterns. The audience can easily follow the upward trajectory.<br>
+• <strong>Heatmap</strong> for seasonal variation — a 12-month × 30-year matrix with color gradient (blue=cold → red=hot) shows patterns at a glance. Use sequential color scale, not rainbow.<br>
+• <strong>Scatter Plot with Annotations</strong> for anomalies — plot temperature deviations and use red markers/arrows to highlight extreme years (outliers).<br>
+• <strong>Area Chart</strong> for cumulative CO₂ or sea level rise — emphasizes growing volume over time.<br>
+Avoid: Pie charts (not suitable for temporal data), 3D charts (distort perception).<br><br>
+
+<strong>2. Visual Hierarchy & Clarity:</strong><br>
+• <strong>Size hierarchy:</strong> Main temperature trend chart = largest (hero element). Supporting charts smaller below.<br>
+• <strong>Color hierarchy:</strong> Use red for danger/anomalies (pre-attentive), blue for normal baselines. Consistent color coding across all charts.<br>
+• <strong>Proximity:</strong> Group related metrics together (temperature + precipitation side by side).<br>
+• <strong>Clarity:</strong> Clear axis labels, descriptive titles ("Global Temperature Rise: 1994–2024"), explanatory captions for non-technical audience. Remove all chart junk (3D effects, heavy gridlines) — maximize Data-Ink Ratio.<br>
+• <strong>Progressive Disclosure:</strong> Start with a global overview, allow users to click/scroll into regional details.<br><br>
+
+<strong>3. Storytelling Flow (Narrative Arc):</strong><br>
+• <strong>Context:</strong> "For decades, global temperatures remained within a stable range. This was our baseline — the 'normal' climate." (Show stable section of the line chart)<br>
+• <strong>Conflict:</strong> "Starting in the late 1990s, temperatures began rising sharply. The 10 hottest years on record have all occurred since 2010. The red zones on our heatmap show unprecedented warming." (Highlight anomalies with annotations)<br>
+• <strong>Resolution:</strong> "If we reduce emissions by X%, projections show we can limit warming to 1.5°C. Here are three actionable steps: renewable energy adoption, reforestation targets, and policy changes." (Show projected scenarios with interactive toggle)<br><br>
+
+<strong>4. Implementation:</strong><br>
+• <strong>Python (Matplotlib):</strong> Use plt.plot() for the 30-year trend line with plt.annotate() for anomaly labels. Use plt.subplots(2,2) for a 4-chart dashboard. plt.imshow() or seaborn heatmap for seasonal matrix.<br>
+• <strong>Python (Plotly):</strong> px.line() with rangeslider=True for interactive time exploration. px.scatter() with animation_frame="year" for animated evolution. px.imshow() with 'RdBu_r' color scale for heatmap. Hover tooltips show exact values.<br>
+• <strong>Excel:</strong> Line chart for trends, Conditional Formatting → Color Scales for heatmap in the data table. Sparklines in summary rows for compact seasonal snapshots. Combo Chart if showing temperature + rainfall on same graph (Secondary Axis).
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+function showTopic(id, btn) {
+  document.querySelectorAll('.topic-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-bar button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: document.getElementById(id).offsetTop - 100, behavior: 'smooth'});
+}
+
+function checkAns(btn, idx) {
+  const quizQ = btn.closest('.quiz-q');
+  const correct = parseInt(quizQ.dataset.answer);
+  const allBtns = quizQ.querySelectorAll('.opt-btn');
+  allBtns.forEach(b => { b.classList.add('disabled'); });
+  if (idx === correct) {
+    btn.classList.add('correct');
+  } else {
+    btn.classList.add('wrong');
+    allBtns[correct].classList.add('correct');
+  }
+  quizQ.querySelector('.explanation').classList.add('show');
+}
+
+function toggleModel(btn) {
+  const ans = btn.nextElementSibling;
+  ans.classList.toggle('show');
+  btn.textContent = ans.classList.contains('show') ? 'Hide Answer' : 'Show Model Answer';
+}
+</script>
+
+<footer style="text-align:center; padding:40px 20px 32px; border-top:1px solid var(--border); margin-top:40px; color:var(--text2); font-size:0.88rem; line-height:1.8;">
+  <p style="font-family:'DM Serif Display',serif; font-size:1.1rem; color:var(--text); margin-bottom:6px;">Made by Prince Verma · B24BS2257</p>
+</footer>
+
+</body>
+</html>
